@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--bootstrap inicia-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> 
+    <!--bootstrap fin-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./estilo.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <header></header>
+    <section class="contenedor">
+        <div class="container">
+            <div class="input"><h2>Listado de libros a la venta</h2>
+                <label for="buscaLibro">Ingrese el titulo del libro</label>
+                <input type="text" id="buscaLibro">
+                <button type="button" id="btnBuscar" class="btnBuscar">Buscar</button>
+            </div>
+            <!--<div class= "row row-cols-1 row-cols-sm-2 row-cols-md-4" id="card-group">-->
+            <div class="item-contenedor" id="card-group">
+            </div>
+        </div>
+        <!-- Carrito de Compras -->
+        <div class="contenedorCarro">            
+            <div class="carrito" id="carrito">
+                <div class="headerCarrito">
+                    <span>Productos seleccionados<i class="fa-solid fa-cart-shopping"></i></span>
+                </div>
+                <div id="itemsCarrito">
+                </div>
+                <div class="carrito-total">
+                    <div class="fila">
+                        <strong>Total</strong>
+                        <span class="precioTotal">
+                            $0.000,00
+                        </span>
+                    </div>
+                    <button class="btn-pagar" id="id-btnPagar">Confirmar y pagar <i class="fa-solid fa-bag-shopping"></i> </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="./main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+</script>
+
+</html>
