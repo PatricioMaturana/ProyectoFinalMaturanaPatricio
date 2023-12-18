@@ -1,4 +1,5 @@
 /*Creo la clase Producto para instanciar varios objetos productos, objetos que tendrán como propiedades; el titulo, ctegoria, precio, cantidad, etc.*/
+/*Cada objeto representa un artículo con propiedades como id, título, categoría, precio, etc.*/
 class Producto{
     constructor(id, title, category, price, cantidad, stock, image, description){
         this.id  =   id;
@@ -13,13 +14,17 @@ class Producto{
 }
 
 
-
-const listaProductos = [];
-const producto=[];
+const listaProductos = []; //Se inicializa arreglo que contendra todos los productos que se obtendrán de la API externa.
+const producto=[]; //Se inicializa arreglo, este se instancia a través del objeto Producto, y contendra todos los articulos de tal manera
+                   //que permitira obtener los datos requeridos llamandolos a través de etiquetas en español (Titulo, Precio, etc).
 const creaProductos = ()=> {
-listaProductos.forEach(lista => {
+listaProductos.forEach(lista => { //Se utiliza el método forEach para iterar sobre cada elemento en el arreglo listaProductos
+                                  //La función de flecha (lista => { ... }) se ejecuta para cada elemento de listaProductos
     const instanciaProducto = new Producto(lista.id, lista.title, lista.category, lista.price, 1, 10, lista.image, lista.description)
-    producto.push(instanciaProducto);
+                                //Dentro del bucle, se crea una instancia del objeto Producto. Los argumentos de esta instancia son 
+                                // obtenidos de las propiedades del objeto lista. Cada objeto lista representa un producto con propiedades como id, título, categoría, precio, etc.
+    producto.push(instanciaProducto); //el arreglo producto contendrá instancias de la clase Producto basadas en los datos de listaProductos
+                                      //Agrega los productos obtenidos al final del arreglo
 });
 agregarCards(producto); /*Este metodo/ función se ejecuta al iniciar, carga todos los productos ya explicado anteriormente*/
 }
@@ -27,12 +32,13 @@ agregarCards(producto); /*Este metodo/ función se ejecuta al iniciar, carga tod
 const obtenerProductos = async () =>
 {
     try{
-        const response = await fetch(`https://fakestoreapi.com/products`)
-        const data = await response.json()
-        listaProductos.push(...data);
-        creaProductos();
-    }catch(error){
-        console.log(error);
+        const response = await fetch(`https://fakestoreapi.com/products`) //Utiliza fetch para realizar una solicitud a la API externa (https://fakestoreapi.com/products).
+        const data = await response.json() //Espera la respuesta y la convierte a formato JSON.
+        listaProductos.push(...data); //Agrega los productos obtenidos al final del arreglo listaProductos
+        creaProductos(); //Llama a la función creaProductos para procesar los productos recién obtenidos.
+    }catch(error){ //En caso de un error durante la solicitud a la API, muestra un mensaje de error utilizando una biblioteca llamada Swal.fire
+        //Se muestra por pantalla mensaje a través de libreria Swal.fire 
+        alertaPopUp("error", "al consumir la API.");
     }
 }
 
@@ -56,21 +62,21 @@ else
         
         /*  Con estás lineas de código se obtiene elementos del DOM*/
         
-        /*  Aquí especificamente se mostraran las tarjetas de cada Libro*/
+        /*  Aquí especificamente se mostraran las tarjetas de cada producto*/
         let cardGroup =   document.getElementById("card-group");
         
         /*  Aquí se mostraran los libros que se llevan al carro de compra*/
         let itemsCarrito =   document.getElementById("itemsCarrito");
         
         /*  Aquí se utiliza para obtener todos los elementos asociados a la clase boton,
-            Cada libro tiene asociado un botón de compra, a través de el ID del boton se puede identificar el libro.
-            De esta manera cuando le hagan click al botón comprar podremos saber que libro es y se agregara al carro de compra.
+            Cada libro tiene asociado un botón de compra, a través de el ID del boton se puede identificar el producto.
+            De esta manera cuando le hagan click al botón comprar podremos saber que producto es y se agregara al carro de compra.
         */
         let botonAgregar = document.querySelectorAll(".boton");
         
         /*  Al momento de cargar la pagina se invoca este metodo/ función.
-            Se le traspasa el arreglo que contiene todos los libros ya gregados anteriormente,
-            De esta manera se creara una tarjeta para cada libro y se agregran al documento.
+            Se le traspasa el arreglo que contiene todos los productos ya agregados anteriormente,
+            De esta manera se creara una tarjeta para cada producto y se agregran al documento.
         */
         function agregarCards(arreglo)
         {
@@ -78,10 +84,10 @@ else
             arreglo.forEach(e => {
                 const card = document.createElement("div"); /*Aquí creo un elemento HTML, y se instancia en la constante card*/
                 card.className =  "card"; /*Al elemento HTML <div> le ponemos la clase card (<div class="card">)*/
-                card.id =   e.id;/*al igual que la anterior, ahora se le deja un id el cual contendra el N° de serie del libro */
+                card.id =   e.id;/*al igual que la anterior, ahora se le deja un id el cual contendra el N° de id del producto */
                 card.innerHTML= /*  Esta se utiliza para crear estructura html de manera dinamica, luego incrustar con 
                                     los atributos requeridos dentro del div padre, esto queda dentro del objeto instanciado
-                                    card. En otras palabras estamos creando las tarjetas para cada libro.
+                                    card. En otras palabras estamos creando las tarjetas para cada producto.
                                 */
                                 `<div>
                                     <div class="row g-0">
@@ -104,7 +110,7 @@ else
                 cardGroup.appendChild(card);/*  Aquí se agrega los elementos que contiene card dentro del objeto cardGroup
                                                 Osea la estructura HTML dinamica construida, queda dentro del 
                                                 <div id="card-group"> padre, aquí se contendrán/visualizaran todas 
-                                                las tarjetas de cada libro. 
+                                                las tarjetas de cada producto. 
                                             */
             });
             AgregarStorage();/* Llamado al metodo que permite agregar productos al local storage al presionar el 
@@ -128,7 +134,7 @@ else
         });
         
         /*
-            Este metodo recibe un arreglo con el o los libros que se deben agregar a la sección carrito de compra
+            Este metodo recibe un arreglo con el o los productos que se deben agregar a la sección carrito de compra
             en la pagina index.html. 
          */
         function carrito(Carrito){
@@ -137,7 +143,7 @@ else
                 Carrito.forEach(e => {
                 const carrito = document.createElement("div");/*Crea un nuevo elemento html y se instancia en el objeto carrito*/
                 carrito.innerHTML=  /*  Se crea un estructura HTML dinamica con los atributos que requiero.
-                                        esto representara/ contendra en el frontEnd los libros que se agregaran al carrito 
+                                        esto representara/ contendra en el frontEnd los productos que se agregaran al carrito 
                                     */
                                 `
                                 <section class= "SectionCarro">
@@ -185,7 +191,7 @@ else
                                                                                             ya que Local Storage solo permite cadenas de textos.
                                                                                             */
                         carrito([Encontrados]);/*Se muestra, visualiza en el front, en la sección carrito de compra
-                                                    los libros*/
+                                                    de los productos*/
                     }else /*Si el producto ya esta almacenado (existe en el carro de compra), entrega un popup, donde expresa
                             que el producto ya fue agregado*/
                     {
