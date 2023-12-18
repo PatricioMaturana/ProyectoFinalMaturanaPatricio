@@ -60,7 +60,7 @@ const nuevoLibro39 = new Libro("El perfume", "Patrick Süskind", "Novela histór
 const nuevoLibro40 = new Libro("Las uvas de la ira", "John Steinbeck", "Ficción social", "36000","1", "9", "40", "https://images.cdn1.buscalibre.com/fit-in/360x360/d0/ce/d0ced4b0ab4e0a863a2ef564f876732a.jpg");
 const nuevoLibro41 = new Libro("Harry Potter y la piedra filosofal", "J.K. Rowling", "Fantasía juvenil", "38000","1", "11", "41", "https://falabella.scene7.com/is/image/Falabella/gsc_116306931_1439313_1?wid=1500&hei=1500&qlt=70");
 const libros       = [nuevoLibro1,nuevoLibro2,nuevoLibro3,nuevoLibro4,nuevoLibro5,nuevoLibro6,nuevoLibro7,nuevoLibro8,nuevoLibro9,nuevoLibro10, nuevoLibro11, nuevoLibro12, nuevoLibro13,nuevoLibro14,nuevoLibro15,nuevoLibro16,nuevoLibro17,nuevoLibro18,nuevoLibro19,nuevoLibro20,nuevoLibro21,nuevoLibro22, nuevoLibro23, nuevoLibro24, nuevoLibro25,nuevoLibro26,nuevoLibro27,nuevoLibro28,nuevoLibro29,nuevoLibro30,nuevoLibro31,nuevoLibro32,nuevoLibro33,nuevoLibro34, nuevoLibro35, nuevoLibro36, nuevoLibro37,nuevoLibro38,nuevoLibro39,nuevoLibro40,nuevoLibro41];
-
+console.table(libros);
 /*
     Con estás lineas de código obtenemos información del Local Storage, si existe se almacena es un arreglo, de lo contrario
     El arreglo se deja vacio.
